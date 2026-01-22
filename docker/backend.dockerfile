@@ -15,7 +15,7 @@
 # limitations under the License.
 #
 
-FROM openjdk:8-jre-alpine
+FROM eclipse-temurin:8-jre-ubi9-minimal
 
 ENV DOCKER true
 ENV TZ Asia/Shanghai
