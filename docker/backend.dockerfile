@@ -17,13 +17,13 @@
 
 FROM eclipse-temurin:8-jre-ubi9-minimal
 
-ENV DOCKER true
-ENV TZ Asia/Shanghai
-ENV SEATUNNEL_WEB_HOME /opt/app/seatunnel-web
+ENV DOCKER=true
+ENV TZ=Asia/Shanghai
+ENV SEATUNNEL_WEB_HOME=/opt/app/seatunnel-web
 
 WORKDIR $SEATUNNEL_WEB_HOME
 
-ADD ../seatunnel-server/seatunnel-app/target/seatunnel-web/ $SEATUNNEL_WEB_HOME/
+ADD seatunnel-server/seatunnel-app/target/seatunnel-web/ $SEATUNNEL_WEB_HOME/
 
 EXPOSE 8080
 
