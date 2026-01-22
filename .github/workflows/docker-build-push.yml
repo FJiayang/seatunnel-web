@@ -75,6 +75,7 @@ jobs:
           -D"maven.test.skip"=true
           -D"checkstyle.skip"=true
           -D"license.skipAddThirdParty"=true
+          -D"spotless.check.skip"=true
           -D"http.keepAlive"=false
           -D"maven.wagon.http.pool"=false
           -D"maven.wagon.http.retryHandler.count"=3
