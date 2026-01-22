@@ -50,6 +50,7 @@ jobs:
           cache: 'maven'
 
       - name: Build backend with Maven
+        working-directory: ./seatunnel-web
         run: >-
           ./mvnw -B install 
           -D"maven.test.skip"=true
@@ -88,7 +89,7 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
-          context: ./seatunnel-web
+          context: .
           file: ./seatunnel-web/docker/backend.dockerfile
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
