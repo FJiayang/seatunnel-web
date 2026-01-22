@@ -23,7 +23,7 @@ ENV SEATUNNEL_WEB_HOME=/opt/app/seatunnel-web
 
 WORKDIR $SEATUNNEL_WEB_HOME
 
-ADD seatunnel-web/seatunnel-server/seatunnel-app/target/seatunnel-web/ $SEATUNNEL_WEB_HOME/
+ADD seatunnel-web-dist/target/seatunnel-web/ $SEATUNNEL_WEB_HOME/
 
 EXPOSE 8080
 

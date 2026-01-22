@@ -50,9 +50,8 @@ jobs:
           cache: 'maven'
 
       - name: Build backend with Maven
-        working-directory: ./seatunnel-web
         run: >-
-          ./mvnw -B install 
+          ./mvnw -B install
           -D"maven.test.skip"=true
           -D"checkstyle.skip"=true
           -D"license.skipAddThirdParty"=true
@@ -61,6 +60,12 @@ jobs:
           -D"maven.wagon.http.pool"=false
           -D"maven.wagon.http.retryHandler.count"=3
           -D"maven.wagon.httpconnectionManager.ttlSeconds"=120
+
+      - name: Prepare Docker build context
+        run: |
+          # Rename versioned directory to fixed name for Docker build
+          cd seatunnel-web-dist/target
+          mv apache-seatunnel-web-* seatunnel-web
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
@@ -90,8 +95,10 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: .
-          file: ./seatunnel-web/docker/backend.dockerfile
+          file: ./docker/backend.dockerfile
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           platforms: linux/amd64
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
