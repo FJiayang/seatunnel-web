@@ -63,7 +63,7 @@ jobs:
 
       - name: Install pnpm dependencies
         working-directory: ./seatunnel-ui
-        run: pnpm install
+        run: pnpm install --no-frozen-lockfile
 
       - name: Build frontend
         working-directory: ./seatunnel-ui
